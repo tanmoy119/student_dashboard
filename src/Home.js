@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import styled from "styled-components";
 import AddStudent from './AddStudent';
+import DeleteStudent from './DeleteStudent';
 import Popup from './Popup';
 import StudentTable from "./StudentTable";
 
@@ -8,6 +9,7 @@ function Home() {
 
     const [openPopup1, setOpenPopup1] = useState(false);
     const [openPopup2, setOpenPopup2] = useState(false);
+    const [openPopup3, setOpenPopup3] = useState(false);
     const [student, setStudent] = useState();
   return (
     <Container>
@@ -17,8 +19,9 @@ function Home() {
       <button className="btn1" onClick={()=>{setOpenPopup1(true)}}>+ADD</button>
     </div>
     <div className="studenttbl">
-    <StudentTable openPopup= {openPopup2}
-      setOpenPopup= {setOpenPopup2}
+    <StudentTable 
+      setOpenPopup2= {setOpenPopup2}
+      setOpenPopup3= {setOpenPopup3}
       setStudent={setStudent} />
     </div>
  
@@ -39,6 +42,13 @@ function Home() {
       setOpenPopup = {setOpenPopup2}
       >
          <AddStudent title="Edit Student" url1="null" setOpenPopup= {setOpenPopup2} student={student} />
+
+        </Popup>
+        <Popup
+      openPopup= {openPopup3}
+      setOpenPopup= {setOpenPopup3}
+      >
+         <DeleteStudent title="Delete Student" url1="null" setOpenPopup= {setOpenPopup3} student={student} />
 
         </Popup>
        

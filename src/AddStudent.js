@@ -9,14 +9,14 @@ function AddStudent(props) {
  //console.log(student._id);
  if (url1=="null") {
   console.log("hit");
-   url=`http://localhost:5000/post/edit/data?key=tanmoy&id=${student._id}`                    
+   url=`https://ap-south-1.aws.data.mongodb-api.com/app/application-0-btquy/endpoint/edit/student/data?secret=tanmoy&id=${student._id}`                    
  }else{
-  url=`http://localhost:5000/post/student/data?key=tanmoy`
+  url=`https://ap-south-1.aws.data.mongodb-api.com/app/application-0-btquy/endpoint/post/student/data?secret=tanmoy`
  }
 
   const [data,setData] = useState({
     name:(student.name)?student.name:"",
-    class:(student.class)?student.class:"",
+    clas:(student.clas)?student.clas:"",
     score:(student.score)?student.score:"",
     result:(student.result)?student.result:"",
     grade:student.grade?student.grade:""
@@ -75,7 +75,7 @@ function AddStudent(props) {
       headers: {}, 
       data: {
         name: data.name,
-        class: data.class,
+        clas: data.clas,
         result: data.result,
         score: data.score,
         grade: data.grade
@@ -95,16 +95,16 @@ function AddStudent(props) {
         </div><hr />
         <div className="" style={{margin:"30px 0 30px 0"}}>
         <span className='title'>STUDENT NAME*</span>
-        <input onChange={inputEvent} type="text" name='name' value={data.name} />
+        <input onChange={inputEvent} type="text" name='name' value={data.name} required />
         </div>
         <div className="" style={{margin:"20px 0 30px 0"}}>
         <span className='title'>CLASS*</span>
-        <input onChange={inputEvent} type="text" name='class' value={data.class} />
+        <input onChange={inputEvent} type="number" name='clas' value={data.clas} required min="1" max="12" />
         <span className='title'><i>Please input value between 1 & 12</i></span>
         </div>
         <div className="" style={{margin:"20px 0 30px 0"}}>
         <span className='title'>SCORE*</span>
-        <input onChange={inputEvent} type="number" name='score' value={data.score} />
+        <input onChange={inputEvent} type="number" name='score' value={data.score} required min="0" max="100" />
         <span className='title'><i>Please input value between 0 & 100</i></span>
         </div>
 

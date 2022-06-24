@@ -5,20 +5,12 @@ import CreateIcon from '@mui/icons-material/Create';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import axios from 'axios';
 
-// import Table from '@mui/material/Table';
-// import TableBody from '@mui/material/TableBody';
-// import TableCell from '@mui/material/TableCell';
-// //import TableContainer from '@mui/material/TableContainer';
-// import TableHead from '@mui/material/TableHead';
-// import TableRow from '@mui/material/TableRow';
-// import { TableContainer } from '@mui/material';
-
 
 
 function StudentTable(props) {
-    const { openPopup, setOpenPopup, setStudent} = props;
+    const {  setOpenPopup2,setOpenPopup3, setStudent} = props;
 
-    const url ='http://localhost:5000/get/student/data?key=tanmoy';
+    const url ='https://ap-south-1.aws.data.mongodb-api.com/app/application-0-btquy/endpoint/get/student/data?secret=tanmoy';
   const [data,setData] = useState([]);
 
   useEffect(()=>{
@@ -34,13 +26,21 @@ function StudentTable(props) {
 
     setStudent(row);
 
-    setOpenPopup(true);
+    setOpenPopup2(true);
+  }
+  const remove = (row)=>{
+
+    
+    setStudent(row);
+
+    setOpenPopup3(true);
+
   }
   return (
     <Tablecontainer component={Paper}>
         <Table sx={{ minWidth: 650 }} aria-label="simple">
             <TableHead >
-                <TableRow style={{backgroundColor:"#f1f4f8"}} >
+                <TableRow style={{backgroundColor:"#f1f4f8" }} >
                     <Tablecell><b> No.</b></Tablecell>
                     <Tablecell><b>Student Name</b></Tablecell>
                     <Tablecell><b>Class</b></Tablecell>
@@ -60,13 +60,13 @@ function StudentTable(props) {
                         {i+1}
                     </TableCell>
                     <TableCell >{row.name}</TableCell>
-                    <TableCell >{`${row.class} ${(row.class>=4)?'th':(row.class===1)?'st':(row.class===2)?'nd':'rd'}`}</TableCell>
+                    <TableCell >{`${row.clas} ${(row.clas>=4)?'th':(row.clas==1)?'st':(row.clas==2)?'nd':'rd'}`}</TableCell>
                     <TableCell ><span className={(row.result==="Passed")?"Pvalue":"Fvalue"}>{row.result}</span></TableCell>
                     <TableCell >{`${row.score}/100`}</TableCell>
-                    <TableCell style={{color:`${(row.grade=="Poor")?"#bf2c2c":(row.grade=="Average")?"#bfab2c":"#2cbf6e"}`}} >{row.grade}</TableCell>
+                    <TableCell style={{color:`${(row.grade=="Poor")?"#f24643":(row.grade=="Average")?"#2ca4d8":"#2cbf6e"}`}} >{row.grade}</TableCell>
                     <div className="icon">
                     <button style={{border:"none",backgroundColor:"transparent"}} onClick={()=>{edit(row)}} ><CreateIcon className='C' /></button>
-                    <DeleteOutlineIcon className='D'/>
+                    <button style={{border:"none",backgroundColor:"transparent"}} onClick={()=>{remove(row)}} ><DeleteOutlineIcon className='D'/></button>
                     </div>
 
                 </TableRow>

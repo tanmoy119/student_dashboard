@@ -5,7 +5,7 @@ import DialogContent from '@mui/material/DialogContent';
 import styled from 'styled-components';
 
 function Popup(props) {
-    const {title, children, openPopup, setOpenPopup} = props ;
+    const { children, openPopup, setOpenPopup} = props ;
   return (
     <Dialog open={openPopup}>
       
