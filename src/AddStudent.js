@@ -6,7 +6,7 @@ let url;
 
 function AddStudent(props) {
  const {title, setOpenPopup, url1, student } = props;
- //console.log(student._id);
+
  if (url1=="null") {
   console.log("hit");
    url=`https://ap-south-1.aws.data.mongodb-api.com/app/application-0-btquy/endpoint/edit/student/data?secret=tanmoy&id=${student._id}`                    
@@ -29,7 +29,7 @@ function AddStudent(props) {
   
     setData((prevalue)=>{
       
-      //console.log(prevalue);
+      
       return {
           ...prevalue,
           [name]: value
@@ -38,7 +38,6 @@ function AddStudent(props) {
     })
 
     setData((pv)=>{
-     // console.log(pv);
       let result="-"
       let grade="-"
       
@@ -67,7 +66,7 @@ function AddStudent(props) {
 
   const onSubmit = async (event)=>{
     event.preventDefault();
-    console.log(url);
+   
 
      await axios({
       method: 'post',
@@ -140,7 +139,7 @@ border-radius: 20px;
 
   .form{
       padding: 25px 25px;
-      //background-color: yellow;
+      
      
       input{
         margin: 10px 0 0 0;
